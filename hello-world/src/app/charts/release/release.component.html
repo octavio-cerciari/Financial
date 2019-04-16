@@ -1,0 +1,190 @@
+<div class="projects mb-4">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Lançamentos em Aberto</div>
+      <div class="count">| {{payablesOpen.length}} Lançamentos</div>
+      <i class="zmdi zmdi-download"></i>
+    </header>
+    <table class="projects-table">
+      <thead>
+      <tr>
+        <th>Lançamento</th>
+        <th>Vencimento</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+        <th>Parcela</th>
+        <th>Progresso</th>
+        <th>Lugar</th>
+        <th class="text-right">Ações</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let payable of payablesOpen">
+        <td>
+          <p>{{payable.name}}</p>
+          <p></p>
+        </td>
+        <td>
+          <p>{{payable.date}}</p>
+          <p class="text-success"></p>
+        </td>
+        <td>
+          <p  [ngClass]="payable.type === 'Saida' ? 'text-danger' : 'text-success'">{{payable.type}}</p>
+          <p></p>
+        </td>
+        <td>
+          <p>${{payable.amount}}</p>
+          <p>{{payable.paymentForm.name}}</p>
+        </td>
+        <td>
+          <p>x{{payable.installment}}</p>
+          <p>Paid</p>
+        </td>
+        <td class="status">
+          <span *ngIf="payable.progress === 'Aberto'" [ngClass]="payable.progress === 'Aberto' ? 'status-text status-orange' : ''">Em Aberto</span>
+        </td>
+        <td>
+          <p>{{payable.placement.name}}</p>
+          <p></p>
+        </td>
+        <td>
+          <form class="form" action="#" method="POST" (change)="changeProgress(payable, $event.target.value)">
+            <select class="action-box">
+              <option selected>Ações</option>
+              <option value="Fechado">Fechar</option>
+              <option value="Atrasado">Atrasar</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+
+<div class="projects mb-4">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Lançamentos Fechados</div>
+      <div class="count">| {{payablesClose.length}} Lançamentos</div>
+      <i class="zmdi zmdi-download"></i>
+    </header>
+    <table class="projects-table">
+      <thead>
+      <tr>
+        <th>Lançamento</th>
+        <th>Vencimento</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+        <th>Parcela</th>
+        <th>Progresso</th>
+        <th>Lugar</th>
+        <th class="text-right">Ações</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let payable of payablesClose">
+        <td>
+          <p>{{payable.name}}</p>
+          <p></p>
+        </td>
+        <td>
+          <p>{{payable.date}}</p>
+          <p class="text-success"></p>
+        </td>
+        <td>
+          <p  [ngClass]="payable.type === 'Saida' ? 'text-danger' : 'text-success'">{{payable.type}}</p>
+          <p></p>
+        </td>
+        <td>
+          <p>${{payable.amount}}</p>
+          <p>{{payable.paymentForm.name}}</p>
+        </td>
+        <td>
+          <p>x{{payable.installment}}</p>
+          <p>Paid</p>
+        </td>
+        <td class="status">
+          <span *ngIf="payable.progress === 'Fechado'" [ngClass]="payable.progress === 'Fechado' ? 'status-text status-green' : ''">Fechada</span>
+          </td>
+        <td>
+          <p>{{payable.placement.name}}</p>
+          <p></p>
+        </td>
+        <td>
+          <form class="form" action="#" method="POST">
+            <select class="action-box" (change)="changeProgress(payable, $event.target.value)">
+              <option selected>Ações</option>
+              <option value="Aberto">Aberto</option>
+              <option value="Atrasado">Atrasar</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="projects mb-4">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Lançamentos Atrasados</div>
+      <div class="count">| {{payablesLate.length}} Lançamentos</div>
+      <i class="zmdi zmdi-download"></i>
+    </header>
+    <table class="projects-table">
+      <thead>
+      <tr>
+        <th>Lançamento</th>
+        <th>Vencimento</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+        <th>Parcela</th>
+        <th>Progresso</th>
+        <th>Lugar</th>
+        <th class="text-right">Ações</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let payable of payablesLate">
+        <td>
+          <p>{{payable.name}}</p>
+          <p></p>
+        </td>
+        <td>
+          <p>{{payable.date}}</p>
+          <p class="text-success"></p>
+        </td>
+        <td>
+          <p  [ngClass]="payable.type === 'Saida' ? 'text-danger' : 'text-success'">{{payable.type}}</p>
+          <p></p>
+        </td>
+        <td>
+          <p>${{payable.amount}}</p>
+          <p>{{payable.paymentForm.name}}</p>
+        </td>
+        <td>
+          <p>x{{payable.installment}}</p>
+          <p>Paid</p>
+        </td>
+        <td class="status">
+          <span *ngIf="payable.progress === 'Atrasado'" [ngClass]="payable.progress === 'Atrasado' ? 'status-text status-red' : ''">Atrasada</span>
+        </td>
+        <td>
+          <p>{{payable.placement.name}}</p>
+          <p></p>
+        </td>
+        <td>
+          <form class="form" action="#" method="POST" >
+            <select class="action-box" (change)="changeProgress(payable, $event.target.value)">
+              <option selected>Ações</option>
+              <option value="Fechado">Pagar</option>
+              <option value="Aberto">Aberto</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+

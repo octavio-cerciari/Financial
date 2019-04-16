@@ -1,0 +1,60 @@
+{
+  "name": "Payable",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "number",
+      "required": true
+    },
+    "date": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "progress": {
+      "type": "string",
+      "required": true,
+      "default": "Aberto"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "paymentForm": {
+      "type": "belongsTo",
+      "model": "PaymentForm",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "bankAccount": {
+      "type": "belongsTo",
+      "model": "BankAccount",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "placement": {
+      "type": "belongsTo",
+      "model": "Placement",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

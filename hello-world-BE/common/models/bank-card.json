@@ -1,0 +1,43 @@
+{
+  "name": "BankCard",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "flag": {
+      "type": "string",
+      "required": true
+    },
+    "day": {
+      "type": "number",
+      "required": false
+    },
+    "installment": {
+      "type": "boolean",
+      "required": true
+    },
+    "payday": {
+      "type": "boolean",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bankAccount": {
+      "type": "belongsTo",
+      "model": "BankAccount",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

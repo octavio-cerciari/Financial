@@ -1,0 +1,14 @@
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
+
+  <div class="card-list">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" *ngFor="let account of accounts">
+        <div class="card {{account.color}}">
+          <div class="title">{{account.name}}</div>
+          <i class="zmdi zmdi-upload"></i>
+          <div class="value">{{"$ " + (account.amount)}}</div>
+          <div class="stat"><b>{{account.agency}}</b>{{" "+account.account}}</div>
+        </div>
+      </div>
+  </div>
+  <app-graphbar></app-graphbar>

@@ -1,0 +1,61 @@
+<table *ngIf="showDatePicker === true" class="datepicker">
+  <caption class="datepicker-caption">
+    <a (click)="prevMounth()" class="datepicker-prev">Previous</a>
+    <span class="datepicker-title">{{labelMounth}} {{year}}</span>
+    <a (click)="nextMounth()" class="datepicker-next">Next</a>
+  </caption>
+  <thead class="datepicker-head">
+  <tr>
+    <th class="datepicker-th">Se</th>
+    <th class="datepicker-th">Te</th>
+    <th class="datepicker-th">Qa</th>
+    <th class="datepicker-th">Qi</th>
+    <th class="datepicker-th">Se</th>
+    <th class="datepicker-th">Sa</th>
+    <th class="datepicker-th">Do</th>
+  </tr>
+  </thead>
+  <tbody class="datepicker-body">
+  <tr>
+    <td [ngClass]="day !== 1 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(1)">1</a></td>
+    <td [ngClass]="day !== 2 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(2)">2</a></td>
+    <td [ngClass]="day !== 3 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(3)">3</a></td>
+    <td [ngClass]="day !== 4 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(4)">4</a></td>
+    <td [ngClass]="day !== 5 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(5)">5</a></td>
+    <td [ngClass]="day !== 6 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(6)">6</a></td>
+    <td [ngClass]="day !== 7 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(7)">7</a></td>
+  </tr>
+  <tr>
+    <td [ngClass]="day !== 8 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(8)">8</a></td>
+    <td [ngClass]="day !== 9 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(9)">9</a></td>
+    <td [ngClass]="day !== 10 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(10)">10</a></td>
+    <td [ngClass]="day !== 11 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(11)">11</a></td>
+    <td [ngClass]="day !== 12 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(12)">12</a></td>
+    <td [ngClass]="day !== 13 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(13)">13</a></td>
+    <td [ngClass]="day !== 14 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(14)">14</a></td>
+  </tr>
+  <tr>
+    <td [ngClass]="day !== 15 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(15)">15</a></td>
+    <td [ngClass]="day !== 16 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(16)">16</a></td>
+    <td [ngClass]="day !== 17 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(17)">17</a></td>
+    <td [ngClass]="day !== 18 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(18)">18</a></td>
+    <td [ngClass]="day !== 19 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(19)">19</a></td>
+    <td [ngClass]="day !== 20 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(20)">20</a></td>
+    <td [ngClass]="day !== 21 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(21)">21</a></td>
+  </tr>
+  <tr>
+    <td [ngClass]="day !== 22 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(22)">22</a></td>
+    <td [ngClass]="day !== 23 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(23)">23</a></td>
+    <td [ngClass]="day !== 24 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(24)">24</a></td>
+    <td [ngClass]="day !== 25 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(25)">25</a></td>
+    <td [ngClass]="day !== 26 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(26)">26</a></td>
+    <td [ngClass]="day !== 27 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(27)">27</a></td>
+    <td [ngClass]="day !== 28 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(28)">28</a></td>
+  </tr>
+  <tr>
+    <td *ngIf="daysMounth !== 'fev' || yearB === true" [ngClass]="day !== 29 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(29)">29</a></td>
+    <td *ngIf="daysMounth !== 'fev'" [ngClass]="day !== 30 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(30)">30</a></td>
+    <td *ngIf="daysMounth === 'true'" [ngClass]="day !== 31 ? 'datepicker-td' : 'datepicker-td today'"><a (click)="setDay(31)">31</a></td>
+  </tr>
+  </tbody>
+</table>

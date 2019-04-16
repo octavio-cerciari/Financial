@@ -1,0 +1,86 @@
+<div *ngIf="showModalPayable">
+  <div class="modal-backdrop fade show" ></div>
+  <div class="modal-2" >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Contas</h2>
+        </div>
+        <div class="modal-body">
+
+          <div class="card mb-3">
+            <div class="card-body">
+              <label> Lançamentos Futuros </label>
+              <button type="button" class="btn btn-success" (click)="showFormPayable(); loadForm(); loadPaymentForm()">+</button>
+              <form [formGroup]="payableForm" (ngSubmit)="savePayable()" [style.display]=" payableFormVisible ? 'block' : 'none'">
+                <input formControlName="name" placeholder="Fatura" class="name" required />
+                <input formControlName="amount" placeholder="Saldo" class="name" required />
+
+                <select formControlName="type" class="name">
+                  <option value="null" selected disabled>Tipo</option>
+                  <option value="Saida" >Saida</option>
+                  <option value="Entrada" >Entrada</option>
+                </select>
+                <select formControlName="paymentFormId" class="name" (change)="loadPaymentForm()">
+                  <option value="null" selected disabled>Forma de Pagamento</option>
+                  <option *ngFor="let payment of payments" [value]="payment.id">{{payment.name}}</option>
+                </select>
+
+                <app-datepicker *ngIf="!paymentFormDay" (fullDateEmitter)="receiveDate($event)"></app-datepicker>
+
+                <select *ngIf="paymentFormInstall" formControlName="installment" class="name">
+                  <option value="null" selected disabled>Parcelas</option>
+                  <option value="1"  >A Vista</option>
+                  <option value="2" >2x</option>
+                  <option value="3" >3x</option>
+                  <option value="4" >4x</option>
+                  <option value="5" >5x</option>
+                  <option value="6" >6x</option>
+                  <option value="7" >7x</option>
+                  <option value="8" >8x</option>
+                  <option value="9" >9x</option>
+                  <option value="10" >10x</option>
+                  <option value="11" >11x</option>
+                  <option value="12" >12x</option>
+                  <option value="13" >13x</option>
+                  <option value="14" >14x</option>
+                  <option value="15" >15x</option>
+                  <option value="16" >16x</option>
+                  <option value="17" >17x</option>
+                  <option value="18" >18x</option>
+                  <option value="19" >19x</option>
+                  <option value="20" >20x</option>
+                </select>
+                <select formControlName="placementId" class="name">
+                  <option value="null" selected disabled>Lugar</option>
+                  <option *ngFor="let place of places" [value]="place.id">{{place.name}}</option>
+                </select>
+
+                <input name="submit" class="btn-form" type="submit" value="Adicionar" />
+              </form>
+              <hr/>
+              <div class="container">
+                <div *ngFor="let payable of payables">
+                  <label>{{payable.name}}</label>
+                  <label>{{payable.type}}</label>
+                  <label>{{"Valor: " + payable.amount}}</label>
+                  <label>{{"Vencimento: " + payable.date}}</label>
+                  <label>{{"Forma de Pagamento: " + payable.paymentForm.name}}</label>
+                  <label>{{"Lugar: " + payable.placement.name}}</label>
+                  <button href="#" title="" class="btn btn-danger" (click)="deletePayable(payable)">
+                    <span class="mbr-iconfont fa fa-trash"></span>
+                  </button>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" (click)="showModalPayable=false; showFormPayable(false)">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

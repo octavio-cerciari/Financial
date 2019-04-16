@@ -1,0 +1,147 @@
+<div *ngIf="showModalConfig">
+  <div class="modal-backdrop fade show"></div>
+  <div class="modal-2">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Configurações</h2>
+        </div>
+        <div class="modal-body">
+
+          <div class="card mb-3">
+            <div class="card-body">
+
+                <label> Contas Bancárias </label>
+                <button type="button" class="btn btn-success" (click)="showFormAccount()">+</button>
+
+              <form [formGroup]="accountForm" (ngSubmit)="saveAccount()" [style.display]=" accountFormVisible ? 'block' : 'none'">
+                <input formControlName="name" placeholder="Nome Banco" class="name" required />
+                <input formControlName="agency" placeholder="Agência" class="name" required />
+                <input formControlName="account" placeholder="Conta" class="name" required />
+                <input formControlName="amount" placeholder="Saldo" class="name" required />
+                <select formControlName="color" class="name">
+                  <option value="blue" selected>Azul</option>
+                  <option value="green" selected>Verde</option>
+                  <option value="orange" selected>Laranja</option>
+                  <option value="yellow" selected>Amarelo</option>
+                  <option value="red" selected>Vermelho</option>
+                </select>
+                <input name="submit" class="btn-form" type="submit" value="Adicionar" />
+              </form>
+              <hr/>
+              <div class="container">
+                <div *ngFor="let bankAccount of accounts">
+                  <label>{{bankAccount.name}}</label>
+                   <label>{{bankAccount.agency}}</label>
+                  <label>{{bankAccount.account}}</label>
+                 <label>{{"R$: " + bankAccount.amount}}</label>
+                  <label>{{bankAccount.color}}</label>
+                  <button href="#" title="" class="btn btn-danger" (click)="deleteAccounts(bankAccount)">
+                    <span class="mbr-iconfont fa fa-trash"></span>
+                  </button>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <div class="card-body">
+              <label> Cartões </label>
+              <button type="button" class="btn btn-success" (click)="showFormCard()">+</button>
+              <form [formGroup]="cardsForm" (ngSubmit)="saveCard()" [style.display]=" cardsFormVisible ? 'block' : 'none'">
+                <input formControlName="name" placeholder="Nome Cartão" class="name" required />
+                <input formControlName="flag" placeholder="Bandeira" class="name" required />
+                <select formControlName="payday" class="name" [(ngModel)]="_dayTrue">
+                  <option value="null" selected disabled>Fatura?</option>
+                  <option [value]="0" >Não</option>
+                  <option [value]="1" >Sim</option>
+                </select>
+                <input *ngIf="dayTrue" formControlName="day" class="name" placeholder="Dia Vencimento"/>
+
+                <select formControlName="bankAccountId" class="name">
+                  <option value="null" selected disabled>Selecione</option>
+                  <option *ngFor="let account of accounts" [value]="account.id">{{account.name}}</option>
+                </select>
+                <select formControlName="installment" class="name">
+                  <option value="null" selected disabled>Cartão Parcela?</option>
+                  <option value="true" >Permite Parcelar</option>
+                  <option value="false" >Não Permite Parcelar</option>
+                </select>
+                <input name="submit" class="btn-form" type="submit" value="Adicionar" />
+              </form>
+              <hr/>
+              <div class="container">
+                <div *ngFor="let bankCards of cards">
+                  <label>{{bankCards.name}}</label>
+                  <label>{{bankCards.flag}}</label>
+                  <label>{{"Dia Vencimento: " + bankCards.day}}</label>
+                  <label>{{bankCards.bankAccount.name}}</label>
+                  <label>{{"Permite Parcelar: " + bankCards.installment}}</label>
+                  <button href="#" title="" class="btn btn-danger" (click)="deleteCards(bankCards)">
+                    <span class="mbr-iconfont fa fa-trash"></span>
+                  </button>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <div class="card-body">
+              <label> Formas de Pagamento </label>
+              <button type="button" class="btn btn-success" (click)="showFormPayement()">+</button>
+              <form [formGroup]="payementForm" (ngSubmit)="savePayement()" [style.display]=" payementFormVisible ? 'block' : 'none'">
+                <input formControlName="name" placeholder="Forma de Pagamento" class="name" required />
+                <select formControlName="bankCardId" class="name">
+                  <option value="null" selected disabled>Selecione</option>
+                  <option *ngFor="let card of cards" [value]="card.id">{{card.name}}</option>
+                </select>
+                <input name="submit" class="btn-form" type="submit" value="Adicionar" />
+              </form>
+              <hr/>
+              <div class="container">
+                <div *ngFor="let paymentForm of payments">
+                  <label>{{paymentForm.name}}</label>
+                  <label>{{paymentForm.bankCard.name}}</label>
+                  <button href="#" title="" class="btn btn-danger" (click)="deletePayments(paymentForm)">
+                    <span class="mbr-iconfont fa fa-trash"></span>
+                  </button>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <div class="card-body">
+              <label> Lugares </label>
+              <button type="button" class="btn btn-success" (click)="showFormPlace()">+</button>
+              <form [formGroup]="placesForm" (ngSubmit)="savePlace()" [style.display]=" placesFormVisible ? 'block' : 'none'">
+                <input formControlName="name" placeholder="Lugar" class="name" required />
+                <input name="submit" class="btn-form" type="submit" value="Adicionar" />
+              </form>
+              <hr/>
+              <div class="container">
+                <div *ngFor="let placement of places">
+                  <label>{{placement.name}}</label>
+                  <button href="#" title="" class="btn btn-danger" (click)="deletePlaces(placement)">
+                    <span class="mbr-iconfont fa fa-trash" ></span>
+                  </button>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark"
+                  (click)="showModalConfig=false; showFormAccount(false); showFormCard(false); showFormPayement(false); showFormPlace(false)">
+            Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

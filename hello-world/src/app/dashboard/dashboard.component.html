@@ -1,0 +1,46 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<app-release></app-release>
+
+<section>
+  <div class="container">
+
+    <div class="row mbr-justify-content-center">
+
+      <div class="col-lg-6 mbr-col-md-10" (click)="openModalPayable()">
+        <div class="wrap">
+          <div class="ico-wrap">
+            <span class="mbr-iconfont fa-calendar fa"></span>
+          </div>
+          <div class="text-wrap vcenter">
+            <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+              <span>Lançamentos</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mbr-col-md-10" (click)="openModalConfig()">
+        <div class="wrap">
+          <div class="ico-wrap">
+            <span class="mbr-iconfont fa fa-cog"></span>
+          </div>
+          <div class="text-wrap vcenter">
+            <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5"><span>Configurações</span></h2>
+          </div>
+        </div>
+      </div>
+      <app-config></app-config>
+      <app-payable></app-payable>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</section>
+<app-charts></app-charts>
+<app-graph></app-graph>
